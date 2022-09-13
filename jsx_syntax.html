@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .longy {
+            height: 50px;
+            width: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        var myid = 'longy'
+        var mydata = 'hello world'
+        // if we use Captial case at beginning with random tag name ,it will be categorised as component
+        // in the jsx if you want to access data from js, you have to use bracket
+        var vdom = (
+            <div>
+                <h1 className="longy" id={myid.toLowerCase()}>
+                    <span style={{ color: 'orange', fontSize: '20px' }}>
+                        {mydata.toUpperCase()}
+                    </span>
+                </h1>
+                <input type="text"></input>
+                <label>Please input your value</label>
+                {
+                    //<Good>123</Good>
+
+                    /*  if we use Captial case at beginning with random tag name ,it will be categorised as component
+                    if the component is not defined, it will give us error */
+                }
+            </div>
+
+        )
+
+        ReactDOM.render(vdom, document.querySelector(".test"))
+    </script>
+    <!-- jsx means javascript xml  -->
+
+    <!-- 2 jsx syntax rule:
+    1: define the virtual dom, it does not need quote 
+    2: tag combining with js expression, we have to use bracket 
+    3: class attribute should not use class, so we should use className
+    4: change style inline by using react, you should use double bracket
+    e.g. style={{color:'orange',fontSize:'20px'}}
+    style format has to use style={{key:value}}
+    5: virtual dom content only can have one element, it can not have more element like others
+    6: virtual dom tags have to have closed tag 
+    7: 
+-->
+
+
+</body>
+
+</html>

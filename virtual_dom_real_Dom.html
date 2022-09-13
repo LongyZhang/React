@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        const vdom = (
+            <h1><span>123</span></h1>
+        )
+        ReactDOM.render(vdom, document.querySelector(".test"))
+        console.log('vdom is ', vdom);
+        console.dir(document.querySelector(".test"));
+        // about virtual dom :
+        // the pure is object
+        // since you print out the virtual dom and real dom, the virtual dom has less element
+        // because the virtual only needs to be used in the react itself.
+        // 
+    </script>
+</body>
+
+</html>
