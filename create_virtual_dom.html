@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- this code is about difference between jsx and js from react -->
+<!-- the jsx is better for react, i will go with it -->
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- second way to create react without jsx -->
+    <!-- <script>
+        // const VDOM= React.createElement("tag name","tag attribute", "tag content")
+        const VDOM = React.createElement("h1", { id: "title" }, 'hello react')
+        const VDOM2 = React.createElement('h2', { className: 'caonima' }, 'longy is king')
+        ReactDOM.render(VDOM2, document.querySelector('.test'))
+    </script> -->
+
+    <!-- if i want to create a nest element in react, it is better to user jsx versqion -->
+    <script type="text/babel">
+        const VDOM = (
+            <div class="title">
+                <h1>
+                    hello world
+                </h1>
+            </div>
+        )
+        ReactDOM.render(VDOM, document.querySelector('.test'))
+    </script>
+
+</body>
+
+</html>
