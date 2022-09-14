@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- normallly one js file is one module -->
+    <!-- modulise the js to icnrease the effciency -->
+
+    <!-- defination of component: it is combo for css, html and js    -->
+
+    <!-- there is two type of component 1 function componeent , 2 class component -->
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        function Demo() {
+            console.log(this);
+            // this is not a function, it is a function component
+            return <h2>I am defined by function (it is work for simple component)</h2>
+        }
+        // it uses function to design the component
+        // when you access it by render, it is Better to use close tag, so the component will show in devtool
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+        // this function is called by React
+
+        // what happened with functional component and render
+        // 1: find the component by searching tag name
+        // 2 : identity the type of component, and transfer this component from virtual dom to real dom
+        // 3: render it on the pages
+
+    </script>
+
+</body>
+
+</html>

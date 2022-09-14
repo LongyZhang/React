@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        /* 
+        the difference between js expression and js script
+        1: js expression : it will create the value ,it will be placed to somethere ej
+        js expression will always return the value 
+        e.g. (1) . a    (2) . b+a  (3) demo(a)  (4). a.map(num=->num+1) (5) 
+
+        2: js script (1) . if(){} (2) for(var i;i<9;i++) (3) switch() case xxx
+         */
+
+        /* inside of react virtual dom , we only can use js expression */
+
+
+        var data = ['angular', 'react', 'vue']
+
+        var dom = (
+            <div>
+                <h1>The front end framework</h1>
+                <ul>
+                    {
+                        data.map((item, index) => {
+                            return <li key={index}>{item}</li>
+                        })
+                        // when you do the loop, the result should have unique value which is key
+                    }
+                </ul>
+            </div>
+        )
+
+        ReactDOM.render(dom, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>

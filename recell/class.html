@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // create person class
+        class Person {
+            constructor(names, ages) {
+                // who is the this in constructor? this is the instance of person class
+                this.name = names
+                this.age = ages
+            }
+            read() {
+                // js string contain variable you should use the `` which is next to the number 1
+                console.log(`my name is ${this.name} and I am ${this.age} years old`);
+            }
+        }
+
+        class Person2 {
+        }
+        const p1 = new Person('longhan', '123')
+        console.log(p1);
+        p1.read()
+
+    </script>
+
+</body>
+
+</html>
