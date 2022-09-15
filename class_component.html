@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        function Test() {
+            var a = (
+                <div>
+                    <h1>one</h1>
+                    <h1>two</h1>
+                    <h1>three</h1>
+                </div>
+            )
+            return a
+
+            // in the functional react, it must return something
+        }
+
+        // React class component must has three component
+        // 1: extents React.Component
+        // 2: render()
+        // 3: return(div>ul>li) this is example
+
+        class Mycomponent extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <ul>
+                            <li>I AM king</li>
+                            <li>KING James</li>
+                            <li>laker</li>
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Mycomponent />, document.querySelector(".test"))
+        // what happened after you render this tag
+        // 1: React identify the component tag.
+        // 2: if the component is class tpye, new a class component instance
+        // 3: transfer the render result from virtual dom to real dom, insert it into dom.
+
+
+        class SecondCom extends React.Component {
+            render() {
+                console.log('render inside', this);
+                // this acatually points to SecondCom
+                return (
+                    <div>
+                        <ul>
+                            <li>Longy</li>
+                            <li>haha</li>
+                        </ul>
+                    </div>
+
+                );
+            }
+        }
+
+        ReactDOM.render(<SecondCom />
+            , document.querySelector(".test")
+        )
+
+
+
+
+
+        // ReactDOM.render(<Test />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>

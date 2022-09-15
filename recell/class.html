@@ -18,16 +18,35 @@
                 this.age = ages
             }
             read() {
+                // the read function is located at class's protocal object
                 // js string contain variable you should use the `` which is next to the number 1
                 console.log(`my name is ${this.name} and I am ${this.age} years old`);
+                // console.log(`my name is ${this.age} and i am xxx${this.age} years old`);
             }
         }
 
-        class Person2 {
+        // js inhertance is about how to use constrctor and super
+        // in child class you can access super(parents element), then you can have access in child class
+
+
+
+        class student extends Person {
+            constructor(names, ages, student_id) {
+                super(names, ages)
+
+                this.id = student_id
+            }
+            look() {
+                console.log(`student name is ${this.name}; student age is ${this.age}; student id is ${this.id}`);
+            }
         }
+
+        const s1 = new student('jiashi', 123, 901)
         const p1 = new Person('longhan', '123')
         console.log(p1);
+        console.log(s1);
         p1.read()
+        s1.read()
 
     </script>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- what is the complex component?  if the component has state
+         what is the simple component?  if the component does not have state
+        -->
+
+    <!-- class component three core attribute
+        1: State
+        2:props
+        3:refs -->
+
+    <!-- we are using the constructor to initiailise the state -->
+
+    <script type="text/babel">
+
+        // create component
+        class Demo extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { ishot: true, location: 'adelaide' }
+                // how to set your data into class component?
+                // this.state = true
+                // super(props) is convention for react 
+                // this.state is about set data, the data must be listed by object
+            }
+            // react redesigned the onclick to be onClick
+
+
+            render() {
+
+                console.log(this.state.ishot);
+                return (
+                    <div>
+                        <h1 onClick={test}>Today weather is very {this.state.ishot ? 'HOT' : 'Cold'} in {this.state.location} </h1>
+                    </div>
+                );
+            }
+        }
+
+        // render component to page
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+
+        function test() {
+            console.log('test is clicked1');
+        }
+
+        /* var a = document.querySelector(".test")
+        a.addEventListener('click', function () {
+            console.log("h1 is clicked");
+        }) */
+        /* var a = document.querySelector(".test")
+        a.onclick = () => {
+            console.log('h1 is clicked');
+        } */
+
+        // the original js can Be used in react 
+
+    </script>
+
+</body>
+
+</html>
