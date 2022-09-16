@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class temp {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age
+
+            }
+            read() {
+                console.log(this);
+                console.log('my name is ', this.name, 'my age is ', this.age);
+            }
+        }
+
+        var a = new temp('longy', 25)
+        a.read()
+        const x = a.read
+        x()
+    </script>
+
+</body>
+
+</html>

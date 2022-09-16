@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Mycom extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = { name: 'longy', age: '24', sex: 'male', ishot: true }
+                // this.haha = this.demo.bind(this)
+                // bind will let the function has same "this"
+                // bind will bind the
+
+                /* two ways to solve it 
+                1: initialise it in constructor this.state= this.demo.bind(this) 
+                
+                2: bind it in onclick event, onClick={this.demo.bind(this)}*/
+            }
+            demo() {
+                if (this.state.ishot == true) {
+                    this.state.name = 'jia'
+                    this.state.ishot = false
+                }
+                else {
+                    this.state.name = 'longy'
+                    this.state.ishot = true
+                }
+                // because the demo() is callback function from Onclick, so it is not called through prototype
+                // so this call is not from instance
+                // the class function turned on the strict model
+                console.log(this.state.name);
+                // console.log("this text is clicked");
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1 onClick={this.demo.bind(this)}>The PR's name is {this.state.name}, he is {this.state.age} years old
+                            , His gender is {this.state.sex}</h1>
+                    </div>
+                );
+            }
+
+        }
+
+        ReactDOM.render(<Mycom />, document.querySelector(".test"))
+
+
+    </script>
+</body>
+
+</html>
