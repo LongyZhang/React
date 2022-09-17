@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            state = { name: 'longy', sex: 'male' }
+            // this.setState() setState is a function first
+
+            // this.setState({value:das}), inside value must be object format
+
+
+
+            // arrow function acatually do not have this
+            // but if we use this in arrow function, this points to outside of arrow function
+            change = () => {
+                if (this.state.sex === 'male') {
+                    this.setState({ sex: 'female', name: 'jia' })
+                }
+                else {
+                    this.setState({ name: 'longy', sex: 'male' })
+                }
+                console.log(this);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1 onClick={this.change}>my name is {this.state.name} and i am {this.state.sex}</h1>
+                    </div>
+                );
+            }
+        }
+        // console.log(Demo);
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+
+    </script>
+
+</body>
+
+</html>

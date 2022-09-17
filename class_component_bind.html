@@ -19,9 +19,11 @@
             constructor(props) {
                 super(props)
                 this.state = { name: 'longy', age: 22, islongy: true, haha: 'Niubi' }
-                this.change = this.change.bind(this)
+                // this.change = this.change.bind(this)
             }
 
+
+            // the function in Demo class component is used by event callback function
             change() {
                 /* you should not change the state's value directly
                     react does not recognise it
@@ -46,7 +48,7 @@
             render() {
                 return (
                     <div>
-                        <h2 onClick={this.change}>my name is {this.state.name} and my age is {this.state.age}, {this.state.haha}</h2>
+                        <h2 onClick={this.change.bind(this)}>my name is {this.state.name} and my age is {this.state.age}, {this.state.haha}</h2>
                     </div>
                 );
             }

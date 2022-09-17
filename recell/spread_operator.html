@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let a = [1, 3, 5, 7, 89]
+
+        let b = [2, 3, 56, 78, 1]
+
+        let c = [123, 1111]
+
+        console.log(a);
+        console.log(...a);
+        // speard operator will spread the inside value one by one
+
+
+        // console.log(...b, ...c);
+
+        let d = [...b, ...c]
+        console.log(d);
+        // spread operator can construct two array into one
+
+        // use it in function to include mulitiple input
+        function sum(...numbers) {
+            return numbers.reduce((pre, current) => {
+                return pre + current
+            })
+        }
+        console.log(sum(...a, ...b));
+        // use it in function to include mulitiple input
+
+        let person = { name: 'longy', age: '32' }
+        let student = { id: '312', name: 'shijia' }
+        console.log({ ...person, ...student });
+
+        console.log({ ...person });
+        // also spread operator can combine two object, but the latest called name will replace old one
+
+        // spread operator can expand the object as long as you use {}
+
+        // true copy for object
+
+        let personn = { name: 'name', age: '32' }
+
+        let p2 = { ...personn }
+
+        console.log('copied', { ...p2 });
+
+    </script>
+
+</body>
+
+</html>

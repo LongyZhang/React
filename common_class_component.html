@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        // the common version does not have constructor
+
+        // the common version  use arrow function to bind this
+
+
+
+        class Demo extends React.Component {
+
+            state = { name: 'longy', sex: 'male', backgroundColor: 'green', fontSize: '50px' }
+
+            change = () => {
+                if (this.state.sex === 'male') {
+                    this.setState({ name: 'jia', sex: 'female' })
+                }
+                else {
+                    this.setState({ name: 'longy', sex: 'male' })
+                }
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1 onClick={this.change} style={this.state}>My name is {this.state.name}, i am {this.state.sex}</h1>
+                    </div>
+                    // i am not clear that when you call this.state how did you get the background color
+                    // if you setup the style={this.state}, it will refer anything in the state to style 
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>
