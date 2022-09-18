@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        class Demo extends React.Component {
+            render() {
+
+                const { name, age, sex } = this.props
+                return (
+                    <div>
+                        <ul>
+                            <li>{name}</li>
+                            <li>{sex}</li>
+                            <li>{age + 1}</li>
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        var a = { name: 'jack', sex: 'male', age: 26 }
+
+        // if you want to assign value at inline of close tag, all value in here is char or string
+        //  but you can use {} for inline tag
+        // ReactDOM.render(<Demo name='jack' sex='male' age='25' />, document.querySelector(".test"))
+        ReactDOM.render(<Demo {...a} />, document.querySelector(".test"))
+        ReactDOM.render(<Demo {...a} />, document.querySelector(".test2"))
+        ReactDOM.render(<Demo {...a} />, document.querySelector(".test3"))
+
+        //  if we define the props inline of close tag, we should use = for assignment
+        // if we define the props outside of close tag, we should use object format name:'ja'
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        function Person(props) {
+            const { name, age, sex } = props
+            return (
+                <div>
+                    <ul>
+                        <li>{name}</li>
+                        <li>{sex}</li>
+                        <li>{age}</li>
+                    </ul>
+                </div>
+            )
+        }
+
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,
+            sex: PropTypes.string,
+            age: PropTypes.number,
+        }
+
+        Person defaultProps = {
+            sex: 'male',
+            age: 17
+        }
+
+
+        // functional component does not have "this", but we can pass value into props as a argument
+        //  the value can be passed in here 
+        var a = { name: 'longy', sex: 'male', age: 33 }
+        ReactDOM.render(<Person {...a} />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>
