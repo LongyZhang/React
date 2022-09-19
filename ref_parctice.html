@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            // input1 = React.createRef();
+            // input2 = React.createRef();
+            f1 = () => {
+                const { input1 } = this
+                alert(input1.value)
+            }
+
+            f2 = () => {
+                const { input2 } = this
+                alert(input2.value)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input ref={c => this.input1 = c} type="text" placeholder="holder1" />
+                        <button onClick={this.f1}>Click me for first input</button>
+                        <input onBlur={this.f2} ref={d => this.input2 = d} type="text" placeholder="holder1" />
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>
