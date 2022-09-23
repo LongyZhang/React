@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Demo extends React.Component {
+
+            // f1 = () => {
+
+            // }
+            state = { ishot: true }
+
+            f1 = () => {
+                const { input1 } = this
+                alert(input1.value)
+                // reason const{input1}= this, it can access input1 directly
+
+                // let temp = this.input1
+                // alert(temp.value)
+            }
+
+            f2 = () => {
+                const { ishot } = this.state
+                this.setState({ ishot: !ishot })
+                // this.state.ishot
+            }
+
+            saveInput = (currentNode) => {
+                this.input1 = currentNode
+                // another way to pass current node to input1 on class level
+            }
+
+            render() {
+                const { ishot } = this.state
+                return (
+                    <div>
+                        <h2 >today weather is {ishot ? 'hot' : 'cold'}</h2>
+                        {/* <input type="text" ref={currentNode => this.input1 = currentNode} /> */}
+                        <input type="text" ref={this.saveInput} />
+
+
+                        <br />
+                        <button onClick={this.f1}>input your data</button>
+                        <button onClick={this.f2}>change your weather</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+</body>
+
+</html>
