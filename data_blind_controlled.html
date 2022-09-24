@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            // controlled component are thouse in which form's data is handled by the component's state,
+            // it takes current vAlue through props and makes changes through callback such as onclick and onchange
+
+            state = { username: '', password: '' }
+            getName = (event) => {
+                this.setState({ username: event.target.value })
+            }
+
+            getPassword = (event) => {
+                this.setState({ password: event.target.value })
+            }
+
+            preventDefaultChange = (event) => {
+                event.preventDefault()
+                const { username, password } = this.state
+                alert(`username: ${username} password: ${password}`)
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.preventDefaultChange}>
+                        UserName: <input type="text" onChange={this.getName} />
+                        Password: <input type="password" onChange={this.getPassword} />
+                        <button>Submit</button>
+                    </form>
+                );
+            }
+
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>

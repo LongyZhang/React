@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        // the priciple of the uncontrolled component is to prevent default action from render component.
+        // for example the form submission will retrive the page, but we can use the preventDefault to stop this process
+        // this form did not use ref to store value ,it uses state to store value temp
+        class Demo extends React.Component {
+
+            ref_one = React.createRef();
+            ref_two = React.createRef();
+            state = { username: '', password: '' }
+            f1 = (event) => {
+
+                // console.log(event.target.value);
+                this.setState({ username: event.target.value })
+
+            }
+
+            f2 = (event) => {
+
+                this.setState({ password: event.target.value })
+            }
+
+            preventDefaultHandle = (event) => {
+                event.preventDefault()
+                const { username, password } = this.state
+                alert(`username: ${username} password : ${password} `)
+
+            }
+
+            // onChange call function which always record the target value into state
+            render() {
+
+                return (
+                    <form onSubmit={this.preventDefaultHandle}>
+                        <label >Username: </label>
+                        <input type="text" name="username" onChange={this.f1} />
+                        <label >Password: </label>
+                        <input type="password" name="password" onChange={this.f2} />
+                        <button>Submit</button>
+                    </form>
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector('.test'))
+    </script>
+
+</body>
+
+</html>

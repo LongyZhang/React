@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        // the priciple of the uncontrolled component is to prevent default action from render component.
+        // for example the form submission will retrive the page, but we can use the preventDefault to stop this process
+        class Demo extends React.Component {
+
+            ref_one = React.createRef();
+            ref_two = React.createRef();
+
+            f1 = (event) => {
+                event.preventDefault()
+                // event prevent default can stop window retrive
+                alert(`username: ${this.ref_one.current.value} password : ${this.ref_two.current.value} `)
+
+
+            }
+
+
+            render() {
+
+                return (
+                    <form onSubmit={this.f1}>
+                        <label >Username: </label>
+                        <input type="text" ref={this.ref_one} name="username" />
+                        <label >Password: </label>
+                        <input type="password" ref={this.ref_two} name="password" />
+                        <button>Submit</button>
+                    </form>
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector('.test'))
+    </script>
+
+</body>
+
+</html>

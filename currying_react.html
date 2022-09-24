@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            // current issue is "if we have too much data to input, its complicated to input a lot of data"
+
+            // we decide to use saveFormData
+
+            // high level function, it the function satifiy any one of them below: 
+
+            // 1: if function a can take another function as parameters, it can count to be high level func
+            // 2: if the function return is still a function, it is still high level func
+
+            // common high level function:2 promise, map(), reduce()sa
+
+
+            // concept******* currying function, 
+
+
+            state = { username: '', password: '' }
+
+            saveFormData = (key) => {
+                // console.log(key);
+                // bracket will transfer the string type key to be value type key
+                // note: we have to use [key] in here to represent username and password
+                return (event) => {
+                    this.setState({ [key]: event.target.value })
+                    // console.log(event.target.value);
+                }
+            }
+            // getName = (event) => {
+            //     this.setState({ username: event.target.value })
+            // }
+
+            // getPassword = (event) => {
+            //     this.setState({ password: event.target.value })
+            // }
+
+            preventDefaultChange = (event) => {
+                event.preventDefault()
+                const { username, password } = this.state
+                alert(`username: ${username} password: ${password}`)
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.preventDefaultChange}>
+                        UserName: <input type="text" onChange={this.saveFormData('username')} />
+                        Password: <input type="password" onChange={this.saveFormData('password')} />
+                        <button>Submit</button>
+                    </form>
+                );
+            }
+
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>

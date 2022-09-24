@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Demo extends React.Component {
+
+            // create ref container
+            myRef_one = React.createRef()
+            myRef_two = React.createRef()
+
+            // event function for first innput
+            f1 = () => {
+                console.log(this.myRef_one);
+                console.log(this.myRef_one.current.value);
+                this.myRef_one.current.value = null
+            }
+            // event function for second innput
+            f2 = (event) => {
+                console.log(event.target.value);
+                event.target.value = null
+            }
+
+            f3 = (event) => {
+                console.log(event.target.type);
+            }
+            //  notes: if the event target is to get data from same event, we dont use ref
+            // we can pass event into called function
+            // we do not ABUSE react ref
+
+            render() {
+
+                return (
+                    <div>
+                        <input type="text" ref={this.myRef_one} />
+                        <button onClick={this.f1} >submit</button>
+                        <input type="text" onBlur={this.f2} />
+                        <br />
+                        <input type="password" onBlur={this.f3} />
+                    </div>
+
+                );
+            }
+
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector('.test'))
+    </script>
+</body>
+
+</html>
