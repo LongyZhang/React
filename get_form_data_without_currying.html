@@ -21,33 +21,23 @@
 
     <script type="text/babel">
         class Demo extends React.Component {
-            // current issue is "if we have too much data to input, its complicated to input a lot of data"
-
-            // we decide to use saveFormData
-
-            // high level function, it the function satifiy any one of them below: 
-
-            // 1: if function a can take another function as parameters, it can count to be high level func
-            // 2: if the function return is still a function, it is still high level func
-
-            // common high level function:2 promise, map(), reduce()sa
-
-
-            // concept******* currying function, 
-
-            // currying function means calling the nest function to get result
 
 
             state = { username: '', password: '' }
 
-            saveFormData = (key) => {
-                // console.log(key);
-                // bracket will transfer the string type key to be value type key
-                // note: we have to use [key] in here to represent username and password
-                return (event) => {
-                    this.setState({ [key]: event.target.value })
-                    // console.log(event.target.value);
-                }
+            // saveFormData = (key) => {
+            //     // console.log(key);
+            //     // bracket will transfer the string type key to be value type key
+            //     // note: we have to use [key] in here to represent username and password
+            //     return (event) => {
+            //         this.setState({ [key]: event.target.value })
+            //         // console.log(event.target.value);
+            //     }
+            // }
+
+            saveFormDatA = (key, value) => {
+                this.setState({ [key]: value })
+
             }
             // getName = (event) => {
             //     this.setState({ username: event.target.value })
@@ -66,8 +56,8 @@
             render() {
                 return (
                     <form onSubmit={this.preventDefaultChange}>
-                        UserName: <input type="text" onChange={this.saveFormData('username')} />
-                        Password: <input type="password" onChange={this.saveFormData('password')} />
+                        UserName: <input type="text" onChange={(event) => { this.saveFormDatA('username', event.target.value) }} />
+                        Password: <input type="password" onChange={(event) => { this.saveFormDatA('password', event.target.value) }} />
                         <button>Submit</button>
                     </form>
                 );

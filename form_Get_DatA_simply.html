@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Demo extends React.Component {
+
+            state = { username: '', password: '' }
+
+            prevent_default = (event) => {
+                event.preventDefault();
+                const { username, password } = this.state
+                alert(`my username is ${username}, password is ${password}`)
+
+            }
+
+            getData = (key, event) => {
+                this.setState({ [key]: event.target.value })
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.prevent_default}>
+                        Username: <input type="text" onChange={(event) => { this.getData('username', event) }} />
+                        Password: <input type="password" onChange={(event) => { this.getData('password', event) }} />
+                        <button>submit</button>
+                    </form>
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+
+    </script>
+
+</body>
+
+</html>
