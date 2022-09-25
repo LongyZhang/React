@@ -20,6 +20,30 @@
 
     <script type="text/babel">
 
+        /* 
+        below there are life cycle for component
+
+        Initialize render: It is triggered by render(),
+            1. constuctor()
+            2. componentWillMount()
+            3. render()             ====>common
+            4. componentDidMount()  ====>common ,it is commom
+                    we do initialize thing such as timmer , web request, and subscrpbete
+        
+        Update step : it is triggered by this.setState() or parent render() is triggered
+            1. shouldComponentUpdate()
+            2. componentWillUpdate()
+            3. render()
+            4. componentDidUpdate()
+
+        Unmount step:
+            1.ReactDOM.componentWillUnmount() =====>Common
+                    we do close thing such as close timmer and cancel subscribe
+
+    
+        
+        */
+
         class Count extends React.Component {
             state = { current: 0 }
 
@@ -49,12 +73,6 @@
             shouldComponentUpdate() {
                 return true
             }
-            // shouldcomponentUpdate is the step before setState()
-            // by default the should component update is true, if there is anychange 
-            // it will reflect to render() 
-            // but you can set shouldComponentUpdate to be false, it will stop render() agian
-
-
 
             f2 = () => {
                 console.log('unmount');
@@ -76,9 +94,7 @@
             }
         }
 
-        // Component A can call another component in their render()
-        // so another component will become their child 
-        // A component contains B component and Count component
+
         class A extends React.Component {
 
             state = { carName: 'subaru' }
