@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        class Count extends React.Component {
+            state = { current: 0 }
+
+            f1 = () => {
+                let { current } = this.state
+                current++
+                this.setState({ current: current })
+            }
+            componentWillMount() {
+                console.log('will mount');
+            }
+            // the thing between WillMount and DidMount is render()
+            // it runs willMount() first, then runs render() second and runs DidMount() third
+            componentDidMount() {
+                console.log('did mount');
+            }
+
+            componentWillUpdate() {
+                console.log('will update');
+            }
+
+            componentDidUpdate() {
+                console.log('did update');
+            }
+
+            // if you dont write, by defeault it returns true
+            shouldComponentUpdate() {
+                return true
+            }
+            // shouldcomponentUpdate is the step before setState()
+            // by default the should component update is true, if there is anychange 
+            // it will reflect to render() 
+            // but you can set shouldComponentUpdate to be false, it will stop render() agian
+
+
+
+            f2 = () => {
+                console.log('unmount');
+                ReactDOM.unmountComponentAtNode(document.querySelector('.test'))
+            }
+
+            f3 = () => {
+                this.forceUpdate()
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>current sum: {this.state.current}</h2>
+                        <button onClick={this.f1}>click me +1</button>
+                        <button onClick={this.f2}>Delete component</button>
+                        <button onClick={this.f3}>Force update</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Count />, document.querySelector('.test'))
+    </script>
+</body>
+
+</html>

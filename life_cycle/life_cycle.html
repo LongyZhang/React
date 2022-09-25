@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="test"></div>
+    <div class="test2"></div>
+    <div class="test3"></div>
+    <!-- <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        // life cycle :
+
+        // 1: render()   挂上组件
+        // 2: componentDidMount() 挂上组件过后run 一个func
+        // 3: componentWillUnmount() 删除组件之前run 一个func
+        // 4: unmountComponentAtNode() 删除组件
+
+        class Demo extends React.Component {
+
+            // mount 挂载
+            // unmount 卸载 unmountComponentAtNode
+            // opacity 透明度
+            state = { transparency: 1 }
+
+            f1 = () => {
+
+                // it wont unmount the parent element such as class = "test"
+                ReactDOM.unmountComponentAtNode(document.querySelector(".test"))
+            }
+
+            // componentDidMount is brother of render(), so it does not need arrow funct ion
+
+            // when component is mount porperly, it will call componentDidMount
+            // it only happens once
+
+            // componentWillUnmount this function will be trigger when the component closes to unmount
+            // 触发在卸载组件之前
+            componentWillUnmount() {
+
+                clearInterval(this.timer)
+            }
+            // 触发当您完成了挂载组件， 
+            componentDidMount() {
+                // setTimeout will call function after certain time
+                // setintervaL will call function repeatly during certain time, if you want
+                // loop the set inerval is perfect function
+                this.timer = setInterval(() => {
+                    console.log("12");
+                    let { transparency } = this.state
+                    transparency -= 0.1
+                    if (transparency <= 0) transparency = 1
+                    this.setState({ transparency: transparency })
+                }, 200)
+
+                // issue here, we unmount the component, the setinerval will still update, it will cause error
+                // so we need to clean the state
+            }
+            // when does render is called?
+            // 1: inital render on DOM 
+            // 2: updated state 
+            render() {
+                return (
+                    <div>
+                        <h2 style={{ opacity: this.state.transparency }} >React is hard</h2>
+                        <button onClick={this.f1}>go die</button>
+
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<Demo />, document.querySelector(".test"))
+    </script>
+
+</body>
+
+</html>
