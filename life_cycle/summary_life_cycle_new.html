@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list {
+            height: 150px;
+            width: 100px;
+            background-color: skyblue;
+            overflow: auto;
+
+        }
+
+        .news {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        // no idea how to use it , need to understant it after dinner
+        /* Intialise step: 
+            1. constructor()
+            2. render()
+            3. componentDidMount()
+
+            update step:
+            1: shouldComponentUpdate() ? 
+            2: render()
+            3: getSnapshotBeforeUpdate(prevprop,prevstate)
+            4: componentDidUpdate()
+
+            Unmount step:
+            1:componentWillUnmount()
+            2:React.unmountComponentAtNode()
+        
+
+            key hooks:
+
+            1： componentDidMount()
+            2:  componentDidUpdate()
+            3:  componentWillUnmount() 
+        
+        
+        
+        
+        
+        
+        
+        */
+
+
+        class Demo extends React.Component {
+
+            ref_one = React.createRef()
+            // myRef_one = React.createRef()
+            state = { newsArr: [] }
+            componentDidMount() {
+                setInterval(() => {
+                    const { newsArr } = this.state
+                    const news = 'news' + (newsArr.length + 1)
+                    this.setState({ newsArr: [news, ...newsArr] })
+                }, 1000)
+            }
+
+            getSnapshotBeforeUpdate() {
+                // console.log(this.ref_one.current.scrollHeight);
+                return this.ref_one.current.scrollHeight
+
+            }
+
+            componentDidUpdate(preprops, prestate, height) {
+                console.log(height);
+                this.ref_one.current.scrollTop += 30
+            }
+
+            render() {
+                return (
+                    <div className="list" ref={this.ref_one}>
+                        {
+                            this.state.newsArr.map((n, index) => {
+                                return <div key={index} className="news">{n}</div>
+                            })
+                        }
+                    </div >
+
+                );
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.querySelector('.test'))
+    </script>
+
+</body>
+
+</html>
