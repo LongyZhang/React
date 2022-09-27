@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+
+        /* how does key work in virtual dom when they doing loop?
+        1: when state is changed, react will create new virtual dom basing on new state data
+        2: after react will do comparsion between new virtual dom and old virtual dom
+        
+        
+        rule 1:react will search value basing on key between old virtual dom and new virtual dom
+            ***if virtual dom content is unchange,react will use old real dom
+            ***if virtual dom content is changed, react create new real dom to replace old real dom
+        
+         rule 2: old virtual dom can not find new virtual dom's key
+            ***basing on data create real dom, then render to page
+        
+        
+        */
+
+        /* 
+            avoid to use index as key in html tag during the loop
+        
+            ***** It is better to use primary key as key *********
+        */
+
+        class Person extends React.Component {
+            state = {
+                persons: [
+                    { id: 1, name: 'lee', age: 18 },
+                    { id: 2, name: 'lee', age: 18 },
+
+                ]
+            }
+            f1 = () => {
+                const { persons } = this.state
+                const p = { id: persons.length + 1, name: 'wang', age: 20 }
+                this.setState({ persons: [p, ...persons] })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h2>display person</h2>
+                        <h3>use index as key</h3>
+
+                        <button onClick={this.f1}>add wong</button>
+                        <ul>
+                            {
+                                this.state.persons.map((obj, index) => {
+                                    return <li key={index}>{obj.name}-----{obj.age} <input type="text" /></li>
+                                })
+                            }
+                        </ul>
+
+                        <hr />
+                        <h3>use id as key</h3>
+
+                        <ul>
+                            {
+                                this.state.persons.map((obj) => {
+                                    return <li key={obj.id}>{obj.name}-----{obj.age} <input type="text" /></li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<Person />, document.querySelector('.test'))
+
+    </script>
+</body>
+
+</html>
